@@ -31,7 +31,7 @@ load(
 load("@bazel_tools//tools/build_defs/cc:action_names.bzl", "ACTION_NAMES")
 
 def _impl(ctx):
-    if (ctx.attr.cpu == "armeabi"):
+    if (ctx.attr.cpu == "armhf"):
         toolchain_identifier = "armeabi-v7a"
     elif (ctx.attr.cpu == "aarch64-linux-gnu"):
         toolchain_identifier = "aarch64-linux-gnu"
@@ -40,7 +40,7 @@ def _impl(ctx):
     else:
         fail("Unreachable")
 
-    if (ctx.attr.cpu == "armeabi"):
+    if (ctx.attr.cpu == "armhf"):
         host_system_name = "armeabi-v7a"
     elif (ctx.attr.cpu == "aarch64-linux-gnu"):
         host_system_name = "aarch64-linux-gnu"
@@ -49,7 +49,7 @@ def _impl(ctx):
     else:
         fail("Unreachable")
 
-    if (ctx.attr.cpu == "armeabi"):
+    if (ctx.attr.cpu == "armhf"):
         target_system_name = "arm_a15"
     elif (ctx.attr.cpu == "aarch64-linux-gnu"):
         target_system_name = "arm_a15"
@@ -58,7 +58,7 @@ def _impl(ctx):
     else:
         fail("Unreachable")
 
-    if (ctx.attr.cpu == "armeabi"):
+    if (ctx.attr.cpu == "armhf"):
         target_cpu = "armeabi-v7a"
     elif (ctx.attr.cpu == "aarch64-linux-gnu"):
         target_cpu = "aarch64-linux-gnu"
@@ -67,7 +67,7 @@ def _impl(ctx):
     else:
         fail("Unreachable")
 
-    if (ctx.attr.cpu == "armeabi"):
+    if (ctx.attr.cpu == "armhf"):
         target_libc = "glibc_2.19"
     elif (ctx.attr.cpu == "aarch64-linux-gnu"):
         target_libc = "glibc_2.19"
@@ -78,14 +78,14 @@ def _impl(ctx):
 
     if (ctx.attr.cpu == "k8"):
         compiler = "compiler"
-    elif (ctx.attr.cpu == "armeabi"):
+    elif (ctx.attr.cpu == "armhf"):
         compiler = "gcc"
     elif (ctx.attr.cpu == "aarch64-linux-gnu"):
         compiler = "gcc"
     else:
         fail("Unreachable")
 
-    if (ctx.attr.cpu == "armeabi"):
+    if (ctx.attr.cpu == "armhf"):
         abi_version = "gcc"
     elif (ctx.attr.cpu == "aarch64-linux-gnu"):
         abi_version = "gcc"
@@ -94,7 +94,7 @@ def _impl(ctx):
     else:
         fail("Unreachable")
 
-    if (ctx.attr.cpu == "armeabi"):
+    if (ctx.attr.cpu == "armhf"):
         abi_libc_version = "glibc_2.19"
     elif (ctx.attr.cpu == "aarch64-linux-gnu"):
         abi_libc_version = "glibc_2.19"
@@ -113,7 +113,7 @@ def _impl(ctx):
         ACTION_NAMES.cpp_link_nodeps_dynamic_library,
     ]
 
-    if (ctx.attr.cpu == "armeabi"):
+    if (ctx.attr.cpu == "armhf"):
         objcopy_embed_data_action = action_config(
             action_name = "objcopy_embed_data",
             enabled = True,
@@ -172,7 +172,7 @@ def _impl(ctx):
                 ),
             ],
         )
-    elif (ctx.attr.cpu == "armeabi"):
+    elif (ctx.attr.cpu == "armhf"):
         unfiltered_compile_flags_feature = feature(
             name = "unfiltered_compile_flags",
             enabled = True,
@@ -241,7 +241,7 @@ def _impl(ctx):
 
     supports_dynamic_linker_feature = feature(name = "supports_dynamic_linker", enabled = True)
 
-    if (ctx.attr.cpu == "armeabi"):
+    if (ctx.attr.cpu == "armhf"):
         default_compile_flags_feature = feature(
             name = "default_compile_flags",
             enabled = True,
@@ -623,7 +623,7 @@ def _impl(ctx):
         ],
     )
 
-    if (ctx.attr.cpu == "armeabi"):
+    if (ctx.attr.cpu == "armhf"):
         default_link_flags_feature = feature(
             name = "default_link_flags",
             enabled = True,
@@ -748,7 +748,7 @@ def _impl(ctx):
             sysroot_feature,
             unfiltered_compile_flags_feature,
         ]
-    elif (ctx.attr.cpu == "armeabi"):
+    elif (ctx.attr.cpu == "armhf"):
         features = [
             default_compile_flags_feature,
             default_link_flags_feature,
@@ -775,7 +775,7 @@ def _impl(ctx):
     else:
         fail("Unreachable")
 
-    if (ctx.attr.cpu == "armeabi"):
+    if (ctx.attr.cpu == "armhf"):
         cxx_builtin_include_directories = [
             "%package(@org_linaro_components_toolchain_gcc_armv7//include)%",
             "%package(@org_linaro_components_toolchain_gcc_armv7//arm-linux-gnueabihf/libc/usr/include)%",
@@ -817,7 +817,7 @@ def _impl(ctx):
 
     make_variables = []
 
-    if (ctx.attr.cpu == "armeabi"):
+    if (ctx.attr.cpu == "armhf"):
         tool_paths = [
             tool_path(
                 name = "ar",
@@ -957,7 +957,7 @@ def _impl(ctx):
 cc_toolchain_config = rule(
     implementation = _impl,
     attrs = {
-        "cpu": attr.string(mandatory = True, values = ["armeabi", "aarch64-linux-gnu", "k8"]),
+        "cpu": attr.string(mandatory = True, values = ["armhf", "aarch64-linux-gnu", "k8"]),
     },
     provides = [CcToolchainConfigInfo],
     executable = True,
