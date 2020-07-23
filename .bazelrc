@@ -4,7 +4,7 @@ build --cxxopt=--std=c++14
 
 build:armv7hf --crosstool_top=//compilers/arm_compiler:toolchain
 build:armv7hf --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
-build:armv7hf --cpu=armeabi-v7a --compiler=gcc
+build:armv7hf --cpu=armeabi --compiler=gcc
 build:armv7hf --spawn_strategy=standalone
 
 build:aarch64 --crosstool_top=//compilers/arm_compiler:toolchain
