@@ -777,6 +777,7 @@ def _impl(ctx):
 
     if (ctx.attr.cpu == "armhf"):
         cxx_builtin_include_directories = [
+            "/usr/local/include",
             "%package(@org_linaro_components_toolchain_gcc_armv7//include)%",
             "%package(@org_linaro_components_toolchain_gcc_armv7//arm-linux-gnueabihf/libc/usr/include)%",
             "%package(@org_linaro_components_toolchain_gcc_armv7//arm-linux-gnueabihf/libc/usr/lib/include)%",
